@@ -7,15 +7,22 @@ export default function TextForm(props) {
     let newText = text.toUpperCase();
     setText(newText);
   }
+    
+  const handleLoClick = () => {
+    console.log("Lowercase  was clicked" + text);
+    let newText = text.toLowerCase();
+    setText(newText);
+  }
 
   const handelOnChange = (event) => {
     console.log("handleOnChange was clicked");
     setText(event.target.value);
   }
-  const[text,setText]= useState("Enter the text here");
+  const[text,setText]= useState("");
 
   return (
-    <div>
+    <>
+    <div className="container">
       <h3>{props.heading}</h3>
       <div className="mb-3">
         <label for="mybox" class="form-label"></label>
@@ -27,9 +34,21 @@ export default function TextForm(props) {
           rows="8"
         ></textarea>
       </div>
-      <button className="btn btn-primary" onClick={handleUpClick}>
+      <button className="btn btn-primary mx-1" onClick={handleUpClick}>
         Convert to uppercase
       </button>
+      <button className="btn btn-primary mx-1" onClick={handleLoClick}>
+        Convert to Lowercase
+      </button>
     </div>
+    
+    <div className="container my-3">
+      <h2>Summery</h2>
+      <p>{text.split(" ").length} words and {text.length}characters </p>
+      <p>{0.008 * text.split(" ").length}Minutes to read  </p>
+      < h3>Preview</h3>
+      <p>{text}</p>
+    </div>
+    </>
   );
 }
